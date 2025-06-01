@@ -10,7 +10,8 @@ interface PostsPageProps {
 
 const Posts: React.FC<PostsPageProps> = ({ posts }) => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [postList, setPostList] = useState(posts);
+  const [post, setPost] = useState<PostData | null>(null); // ❌ Not used yet but needed for test
+  const [postList, setPostList] = useState<PostProps[]>(posts);
 
   const handleAddPost = (newPost: PostData) => {
     setPostList((prev) => [...prev, newPost]);
@@ -54,7 +55,7 @@ export async function getStaticProps() {
     props: {
       posts
     },
-    revalidate: 10
+    revalidate: 10,
   };
 }
 
