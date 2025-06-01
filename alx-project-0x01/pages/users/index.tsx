@@ -7,7 +7,7 @@ interface UsersPageProps {
   posts: UserProps[];
 }
 
-const UsersPage: React.FC<UsersPageProps> = ({ posts }) => {
+const Users: React.FC<UsersPageProps> = ({ posts }) => {
   return (
     <div className="flex flex-col h-screen">
       <Header />
@@ -28,7 +28,8 @@ const UsersPage: React.FC<UsersPageProps> = ({ posts }) => {
 
 export async function getStaticProps() {
   const res = await fetch('https://jsonplaceholder.typicode.com/users'); 
-  const posts = await res.json(); // Renamed here too
+  const posts = await res.json();
+
   return {
     props: {
       posts
@@ -37,4 +38,4 @@ export async function getStaticProps() {
   };
 }
 
-export default UsersPage;
+export default Users;
