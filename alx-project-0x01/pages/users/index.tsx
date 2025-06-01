@@ -4,10 +4,10 @@ import Header from '@/components/layout/Header';
 import { UserProps } from '@/interfaces';
 
 interface UsersPageProps {
-  users: UserProps[];
+  posts: UserProps[];
 }
 
-const UsersPage: React.FC<UsersPageProps> = ({ users }) => {
+const UsersPage: React.FC<UsersPageProps> = ({ posts }) => {
   return (
     <div className="flex flex-col h-screen">
       <Header />
@@ -17,7 +17,7 @@ const UsersPage: React.FC<UsersPageProps> = ({ users }) => {
           <button className="bg-blue-700 px-4 py-2 rounded-full text-white">Add User</button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {users.map((user) => (
+          {posts.map((user) => (
             <UserCard {...user} key={user.id} />
           ))}
         </div>
@@ -28,11 +28,10 @@ const UsersPage: React.FC<UsersPageProps> = ({ users }) => {
 
 export async function getStaticProps() {
   const res = await fetch('https://jsonplaceholder.typicode.com/users'); 
-  const users = await res.json();
-
+  const posts = await res.json(); // Renamed here too
   return {
     props: {
-      users
+      posts
     },
     revalidate: 10,
   };
